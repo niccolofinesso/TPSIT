@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemitaiz Fan Page</title>
+    <style>
+        /* Stile di base per la pagina */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1b1b1b;
+            color: #f4f4f4;
+            text-align: center;
+        }
+
+        /* Banner con l'immagine di sfondo */
+        .banner {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            background-image: url('https://www.rapologia.it/wp-content/uploads/2018/11/Gemitaiz.jpg'); /* Inserisci qui il link all'immagine del banner */
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Testo in sovraimpressione */
+        .banner h1 {
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            transform: translate(-50%, -10%);
+            color: white;
+            font-size: 3em;
+            font-weight: bold;
+            background-color: rgba(0, 0, 0, 0.5); /* Sfondo semi-trasparente */
+            padding: 10px 20px;
+            border-radius: 8px;
+        }
+
+        /* Stile dei pulsanti */
+        .buttons {
+            margin-top: 30px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 15px 30px;
+            margin: 10px;
+            background-color: #e63946;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 1.2em;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #d62828;
+        }
+
+        /* Box cliccabili */
+        .box-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            gap: 20px;
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: #242424;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2em;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+        }
+
+        .box:hover {
+            background-color: #181818;
+        }
+
+        /* Testo che compare */
+        .hidden-text {
+            display: none;
+            margin-top: 20px;
+            font-size: 1.5em;
+            color: #ffffff;
+        }
+
+        /* Aggiungi stile per il player audio */
+        audio {
+            margin-top: 30px;
+            width: 100%;
+            max-width: 400px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Banner con immagine di sfondo, scritta e immagine di Gemitaiz -->
+    <div class="banner">
+        <h1>Gemitaiz</h1>
+    </div>
+
+    <!-- Sezione dei pulsanti -->
+    <div class="buttons">
+        <a href="https://www.youtube.com/user/Gemitaiz" class="button" target="_blank">Canale YouTube di Gemitaiz</a>
+        <a href="https://www.redbull.com/it-it/chi-e-gemitaiz" class="button" target="_blank">Info</a>
+        <a href="https://open.spotify.com/playlist/2RhBzxhWKeOK1CiLPeHEd7" class="button" target="_blank">Fatte un po' de cultura va</a>
+    </div>
+
+    <!-- Pulsante per far partire Verano Zombie -->
+    <div class="buttons">
+        <button class="button" onclick="playSong()">Ascolta End of day(Freestyle)</button>
+    </div>
+
+    <!-- Player audio nascosto -->
+    <audio id="audio-player" controls style="display: none;">
+        <source src="C:\Users\utente\Desktop\Gemitaiz - Quello che vi consiglio Vol.3\05 End of day (Freestyle).mp3" type="audio/mp3"> <!-- Sostituisci con il link corretto -->
+        Il tuo browser non supporta il tag audio.
+    </audio>
+
+    <!-- Box cliccabili -->
+    <div class="box-container">
+        <div class="box" onclick="showText('esme')">?</div>
+        <div class="box" onclick="showText('filo')">?</div>
+    </div>
+
+    <!-- Testi nascosti che compaiono al clic -->
+    <div id="esme-text" class="hidden-text">Filo</div>
+    <div id="filo-text" class="hidden-text">Cosa pensavi è sempre Filo il bro</div>
+
+    <!-- Script JavaScript per mostrare i testi -->
+    <script>
+        function showText(id) {
+            // Nasconde tutti i testi
+            document.getElementById('esme-text').style.display = 'none';
+            document.getElementById('filo-text').style.display = 'none';
+
+            // Mostra solo il testo corrispondente al box cliccato
+            document.getElementById(id + '-text').style.display = 'block';
+        }
+
+        // Funzione per riprodurre la canzone
+        function playSong() {
+            var audioPlayer = document.getElementById('audio-player');
+            audioPlayer.style.display = 'block'; // Mostra il player
+            audioPlayer.play(); // Avvia la riproduzione
+        }
+    </script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
