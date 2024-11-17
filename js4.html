@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        body {
+            background-image:url("https://www.trekking.it/wp-content/uploads/2020/03/19/08/00/GettyImages-1371148539.jpg?v=154290");
+            font-family: Courier, Courier;
+            letter-spacing: 0%;
+            color: rgb(19, 16, 16);
+            padding: 5px;
+        }
+
+        p, label, #out1 {
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        button {
+            font-size: 18px; 
+            font-family: Courier ;
+            padding: 15px 30px; 
+            background-color: #007bff00;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease, transform 0.2s;
+        }
+
+        button:hover {
+            transform: scale(1.1);  
+        }
+
+
+        input {
+            font-size: 16px;
+            padding: 10px;
+            margin: 10px 0;
+            width: 17%;
+            border-radius: 15px;
+            border: 0.5px solid #070707;
+        }
+
+        label {
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body onload="avvio()">
+
+    <div>
+        <p> Inserisci l'altezza del punto di partenza del tuo trekking, il punto di pausa e il punto di arrivo in metri.
+            Premendo il bottone il programma calcolerà il dislivello totale.
+        </p>
+        <label for="in1">Punto di partenza:</label>
+        <input id="in1" type="number">
+        <label for="in2">Punto di pausa:</label>
+        <input id="in2" type="number">
+        <label for="in3">Punto di arrivo:</label>
+        <input id="in3" type="number">
+        <button onclick="calcola()">Calcola</button>
+    </div>
+
+    <div>
+        <p id="out1">Nome:</p>
+    </div>
+
+    <script>
+        function avvio() {
+            let n = prompt("Inserisci il tuo nome");
+            document.getElementById("out1").innerHTML = "Nome: " + n;
+        }
+
+        function calcola() {
+            let a = document.getElementById("in1").value;
+            let b = document.getElementById("in2").value;
+            let c = document.getElementById("in3").value;
+            let ris = c-a;
+            alert("Il risultato è: "+ris);
+        }
+    </script>
+
+</body>
+</html>
