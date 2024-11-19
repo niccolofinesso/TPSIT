@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-image: url("https://www.trekking.it/wp-content/uploads/2020/03/19/08/00/GettyImages-1371148539.jpg?v=154290");
+            font-family: Courier, monospace;
+            letter-spacing: 0%;
+            color: rgb(19, 16, 16);
+            padding: 5px;
+        }
+
+        p, label, #out1 {
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        button {
+            font-size: 18px;
+            font-family: Courier, monospace;
+            padding: 15px 30px;
+            background-color: #007bff00;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease, transform 0.2s;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+        }
+
+        input {
+            font-size: 16px;
+            padding: 10px;
+            margin: 10px 0;
+            width: 17%;
+            border-radius: 15px;
+            border: 0.5px solid #070707;
+        }
+
+        label {
+            font-size: 18px;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+            color: rgb(0, 51, 102);
+        }
+    </style>
+</head>
+<body onload="avvio()">
+    <div>
+        <p>Inserisci l'altezza del punto di partenza del tuo trekking, il punto di pausa e il punto di arrivo in metri.
+            Premendo il bottone il programma calcolerà il dislivello totale.
+        </p>
+        <label for="in1">Primo voto:</label>
+        <input id="in1" type="number">
+        <label for="in2">Secondo voto:</label>
+        <input id="in2" type="number">
+        <label for="in3">Terzo voto:</label>
+        <input id="in3" type="number">
+        <label for="in4">Quarto voto:</label>
+        <input id="in4" type="number">
+        <label for="in5">Quinto voto:</label>
+        <input id="in5" type="number">
+        <button onclick="gestisciCalcolo()">Calcola</button>
+    </div>
+
+    <div>
+        <p id="out1">Nome:</p>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function avvio() {
+            let n = prompt("Inserisci il tuo nome");
+            document.getElementById("out1").innerHTML = "Nome: " + n;
+        }
+
+        // Funzione per calcolare la media accettando parametri
+        function calcolaMedia(a, b, c, d, e) {
+            return (a + b + c + d + e) / 5;
+        }
+
+        // Funzione per gestire gli input e mostrare il risultato
+        function gestisciCalcolo() {
+            // Leggi i valori degli input
+            const num1 = parseFloat(document.getElementById('in1').value) || 0;
+            const num2 = parseFloat(document.getElementById('in2').value) || 0;
+            const num3 = parseFloat(document.getElementById('in3').value) || 0;
+            const num4 = parseFloat(document.getElementById('in4').value) || 0;
+            const num5 = parseFloat(document.getElementById('in5').value) || 0;
+
+            // Controlla se i valori sono numeri validi
+            if (isNaN(num1) || isNaN(num2) || isNaN(num3) || isNaN(num4) || isNaN(num5)) {
+                document.getElementById('result').innerText = "Per favore, inserisci tutti i numeri.";
+                return;
+            }
+
+            // Calcola la media usando la funzione con parametri
+            const media = calcolaMedia(num1, num2, num3, num4, num5);
+
+            // Mostra il risultato
+            document.getElementById('result').innerText = `La media è: ${media.toFixed(2)}`;
+        }
+    </script>
+</body>
+</html>
