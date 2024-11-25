@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js1</title>
+    <style>
+        #miobottone1 {
+            display: inline-block;
+            padding: 15px 25px;
+            font-size: 24px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            outline: none;
+            color: #fff;
+            background-color: #04AA6D;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 9px #999;
+        }
+
+        #miobottone1:hover {
+            background-color: #3e8e41;
+        }
+
+        #miobottone1:active {
+            background-color: #3e8e41;
+            box-shadow: 0 5px #666;
+            transform: translateY(4px);
+        }
+
+
+
+        #miobottone2 {
+            display: inline-block;
+            padding: 15px 25px;
+            font-size: 24px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            outline: none;
+            color: #fff;
+            background-color: #04AA6D;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 9px #999;
+        }
+
+        #miobottone2:hover {
+            background-color: #3e8e41;
+        }
+
+        #miobottone2:active {
+            background-color: #3e8e41;
+            box-shadow: 0 5px #666;
+            transform: translateY(4px);
+        }
+
+
+
+        #miobottone3 {
+            display: inline-block;
+            padding: 15px 25px;
+            font-size: 24px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            outline: none;
+            color: #fff;
+            background-color: #04AA6D;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 9px #999;
+        }
+
+        #miobottone3:hover {
+            background-color: #3e8e41;
+        }
+
+        #miobottone3:active {
+            background-color: #3e8e41;
+            box-shadow: 0 5px #666;
+            transform: translateY(4px);
+        }
+    </style>
+</head>
+<body>
+    <p>JS1</p>
+    <p>primo es JS1 bottone e alert</p>
+    <input type="text" id="mioinput1">
+    <button id="miobottone1" onclick="aprifinestra()">Niccolò</button>
+    <button id="miobottone2" onclick="aprifinestra2()">Ragazzi</button>
+    <button id="miobottone3" onclick="aprifinestra3()">, buona giornata</button>
+    <div>
+        <p id="out1">Risultato:</p>
+    </div>
+    <script>
+        function aprifinestra(){
+            let i = document.getElementById("mioinput1").value;
+            alert("Niccolò " + i);
+            document.getElementById("out1").innerHTML += i;
+        }
+            function aprifinestra2(){
+            let i = document.getElementById("mioinput1").value;
+            alert("Ragazzi " + i);
+            document.getElementById("out1").innerHTML += i;
+        }
+            function aprifinestra3(){
+            let i = document.getElementById("mioinput1").value;
+            alert(", buona giornata " + i);
+            document.getElementById("out1").innerHTML += i;
+        }
+    </script>
+</body>
+</html>
