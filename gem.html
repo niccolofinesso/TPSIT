@@ -10,7 +10,7 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #1b1b1b;
+            background-color: #131313;
             color: #f4f4f4;
             text-align: center;
         }
@@ -48,7 +48,8 @@
             display: inline-block;
             padding: 15px 30px;
             margin: 10px;
-            background-color: #e63946;
+            box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
+            background-color: #9e000d;
             color: white;
             text-decoration: none;
             border-radius: 25px;
@@ -57,7 +58,7 @@
         }
 
         .button:hover {
-            background-color: #d62828;
+            background-color: #7d0000;
         }
 
         /* Box cliccabili */
@@ -71,7 +72,8 @@
         .box {
             width: 100px;
             height: 100px;
-            background-color: #242424;
+            background-color: #2b0049;
+            box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
             color: white;
             display: flex;
             justify-content: center;
@@ -83,7 +85,7 @@
         }
 
         .box:hover {
-            background-color: #181818;
+            background-color: #150038;
         }
 
         /* Testo che compare */
@@ -101,6 +103,55 @@
             max-width: 400px;
             border-radius: 10px;
         }
+
+
+        .dropdown {
+        padding: 15px;
+        font-size: 1.2em;
+        border: none;
+        box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
+        border-radius: 25px;
+        background-color: #9e000d;
+        ;
+        color: white;
+        cursor: pointer;
+        margin: 10px;
+        transition: background-color 0.3s;
+    }
+
+    .dropdown:hover {
+        background-color: #7d0000;
+    }
+
+    /* Stile per la lista delle canzoni */
+    .song-list {
+            margin-top: 30px;
+            text-align: left;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 600px;
+        }
+
+        .song-list h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .song-list ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .song-list li {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            background-color: #2b0049;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+        }
+
+
     </style>
 </head>
 <body>
@@ -109,6 +160,32 @@
     <div class="banner">
         <h1>Gemitaiz</h1>
     </div>
+
+    <div class="song-list">
+        <h2>Top 10 Canzoni di Gemitaiz</h2>
+        <ul>
+            <li>1. Davide (feat. Coez)</li>
+            <li>2. Nonostante Tutto</li>
+            <li>3. Qualcosa</li>
+            <li>4. Veleno 7 (feat. MadMan)</li>
+            <li>5. Fuori</li>
+            <li>6. Oro & Argento</li>
+            <li>7. Senza di Me (feat. Venerus & Franco126)</li>
+            <li>8. Blue Sky (feat. Emis Killa)</li>
+            <li>9. Toradol</li>
+            <li>10. Scatola Nera (feat. Salmo)</li>
+        </ul>
+    </div>
+
+    <!-- Sezione del pulsante a tendina -->
+<div class="buttons">
+    <select class="dropdown" onchange="handleDropdownChange(this)">
+        <option value="" disabled selected>Seleziona un'opzione</option>
+        <option value="youtube">Canale YouTube</option>
+        <option value="info">Informazioni</option>
+        <option value="spotify">Ascolta su Spotify</option>
+    </select>
+</div>
 
     <!-- Sezione dei pulsanti -->
     <div class="buttons">
@@ -124,7 +201,7 @@
 
     <!-- Player audio nascosto -->
     <audio id="audio-player" controls style="display: none;">
-        <source src="C:\Users\utente\Desktop\Gemitaiz - Quello che vi consiglio Vol.3\05 End of day (Freestyle).mp3"> <!-- Sostituisci con il link corretto -->
+        <source src="C:\Users\utente\Desktop\Gemitaiz - Quello che vi consiglio Vol.3\05 End of day (Freestyle).mp3" type="audio/mp3"> <!-- Sostituisci con il link corretto -->
         Il tuo browser non supporta il tag audio.
     </audio>
 
@@ -149,6 +226,18 @@
             document.getElementById(id + '-text').style.display = 'block';
         }
 
+        function handleDropdownChange(dropdown) {
+        const value = dropdown.value;
+        if (value === "youtube") {
+            window.open("https://www.youtube.com/user/Gemitaiz", "_blank");
+        } else if (value === "info") {
+            window.open("https://www.redbull.com/it-it/chi-e-gemitaiz", "_blank");
+        } else if (value === "spotify") {
+            window.open("https://open.spotify.com/playlist/2RhBzxhWKeOK1CiLPeHEd7", "_blank");
+        }
+    }
+
+
         // Funzione per riprodurre la canzone
         function playSong() {
             var audioPlayer = document.getElementById('audio-player');
@@ -159,6 +248,12 @@
 
 </body>
 </html>
+
+
+
+
+
+
 
 
 
