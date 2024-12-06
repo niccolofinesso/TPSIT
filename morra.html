@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Morra Cinese</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+            color: #fff;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        .game-container {
+            text-align: center;
+        }
+
+        .choices {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .choice {
+            background: #ffffff30;
+            border: 2px solid #fff;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 0 10px;
+            cursor: pointer;
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        .choice:hover {
+            background: #ffffff50;
+            transform: scale(1.1);
+        }
+
+        .results {
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+
+        .results span {
+            font-weight: bold;
+        }
+
+        .scoreboard {
+            margin-top: 30px;
+            font-size: 1.5em;
+        }
+
+        .scoreboard p {
+            margin: 5px 0;
+        }
+
+        @media (max-width: 768px) {
+            .choices {
+                flex-direction: column;
+            }
+
+            .choice {
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <h1>Morra Cinese</h1>
+        <div class="choices">
+            <div class="choice" data-choice="rock">🪨 Sasso</div>
+            <div class="choice" data-choice="paper">📄 Carta</div>
+            <div class="choice" data-choice="scissors">✂️ Forbici</div>
+        </div>
+        <div class="results">
+            <p>Hai scelto: <span id="player-choice">-</span></p>
+            <p>Il computer ha scelto: <span id="computer-choice">-</span></p>
+            <p>Risultato: <span id="result">-</span></p>
+        </div>
+        <div class="scoreboard">
+            <p>Punteggio Giocatore: <span id="player-score">0</span></p>
+            <p>Punteggio Computer: <span id="computer-score">0</span></p>
+        </div>
+    </div>
+
+    <script>
+        const choices = document.querySelectorAll('.choice');
+        const playerChoiceDisplay = document.getElementById('player-choice');
+        const computerChoiceDisplay = document.getElementById('computer-choice');
+        const resultDisplay = document.getElementById('result');
+        const playerScoreDisplay = document.getElementById('player-score');
+        const computerScoreDisplay = document.getElementById('computer-score');
+
+        let playerScore = 0;
+        let computerScore = 0;
+
+        const gameLogic = {
+            rock: { beats: 'scissors' },
+            paper: { beats: 'rock' },
+            scissors: { beats: 'paper' },
+        };
+
+        choices.forEach(choice => {
+            choice.addEventListener('click', () => {
+                const playerChoice = choice.dataset.choice;
+                const computerChoice = getComputerChoice();
+                const result = determineWinner(playerChoice, computerChoice);
+
+                playerChoiceDisplay.textContent = formatChoice(playerChoice);
+                computerChoiceDisplay.textContent = formatChoice(computerChoice);
+                resultDisplay.textContent = result;
+
+                updateScore(result);
+            });
+        });
+
+        function getComputerChoice() {
+            const choices = ['rock', 'paper', 'scissors'];
+            return choices[Math.floor(Math.random() * choices.length)];
+        }
+
+        function determineWinner(player, computer) {
+            if (player === computer) return 'Pareggio!';
+            return gameLogic[player].beats === computer ? 'Hai vinto!' : 'Hai perso!';
+        }
+
+        function formatChoice(choice) {
+            switch (choice) {
+                case 'rock': return '🪨 Sasso';
+                case 'paper': return '📄 Carta';
+                case 'scissors': return '✂️ Forbici';
+            }
+        }
+
+        function updateScore(result) {
+            if (result === 'Hai vinto!') {
+                playerScore++;
+                playerScoreDisplay.textContent = playerScore;
+            } else if (result === 'Hai perso!') {
+                computerScore++;
+                computerScoreDisplay.textContent = computerScore;
+            }
+        }
+    </script>
+</body>
+</html>
