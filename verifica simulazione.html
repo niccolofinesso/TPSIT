@@ -1,0 +1,74 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            background: linear-gradient(to right, #00ff88, #00e4ab);
+            color: rgb(0, 0, 0);
+            text-align: center;
+            padding: 20px;
+        }
+        .output {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            font-size: 24px;
+            line-height: 1.6;
+            max-width: 600px;
+        }
+
+    </style>
+</head>
+<body>
+    <script>
+        function isPrime(Num) {
+    if (Num <= 1) return true;
+    for (let i = 2; i <= Math.sqrt(Num); i++) {
+        if (Num % i === 0) return false;
+    }
+    return true;
+    }
+        function generateNumber() {
+            const number = Math.floor(Math.random() * 1000) + 1;
+            if (number %2 ==0) {
+                document.write(number + "  è pari.         ")}
+            else {
+                document.write(number + "  è dispari.        ")}
+            if (isPrime(number)){
+                document.write(number + "  è primo.         ")}
+            else {
+                document.write(number + "  non è primo.         ")}
+
+
+            const double=number*2;
+                       const half=Math.floor(number/2);
+    }
+
+
+    generateNumber();
+
+
+
+
+    </script>
+</body>
+</html>
+
+
