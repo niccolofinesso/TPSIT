@@ -13,6 +13,15 @@
       .navbar .navbar-brand {
         margin-right: 15px; /* Regola questo valore per modificare la distanza */
       }
+
+      /* Aggiungi questo CSS per ingrandire leggermente le card al passaggio del mouse */
+      .card {
+        transition: transform 0.2s;
+      }
+
+      .card:hover {
+        transform: scale(1.05);
+      }
     </style>
     <title>Menù esercizi</title>
   </head>
@@ -31,86 +40,86 @@
       </div>
     </nav>
     <div class="container">
-    <div class="container my-5 text-center" style="max-width: 580px;">
-      <h1>Esercizi HTML</h1>
-      <p class="lead">Tutte le pagine e gli esercizi html racchiusi in un semplice menù</p>
-      <a href="https://github.com/niccolofinesso/TPSIT" target="_blank">
-        <button type="button" style="background-color: mediumseagreen;" class="btn btn-primary">GitHub</button>
-      </a>
+      <div class="container my-5 text-center" style="max-width: 580px;">
+        <h1>Esercizi HTML</h1>
+        <p class="lead">Tutte le pagine e gli esercizi html racchiusi in un semplice menù</p>
+        <a href="https://github.com/niccolofinesso/TPSIT" target="_blank">
+          <button type="button" style="background-color: mediumseagreen;" class="btn btn-primary">GitHub</button>
+        </a>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="card" style="width: 18rem;margin-bottom: 20px;">
+            <img src="https://github.com/niccolofinesso/TPSIT/blob/main/Screenshot%20(3).png?raw=true" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">5 box</h5>
+              <p class="card-text">Una pagina responsive con 5 box di grandezza uguale e colore diverso in colonna</p>
+              <a href="https://niccolofinesso.github.io/TPSIT/5box1.html" class="btn btn-primary" style="background-color: mediumseagreen">Vedi esercizio</a>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card" style="width: 18rem;margin-bottom: 20px;">
+            <img src="https://github.com/niccolofinesso/TPSIT/blob/main/Screenshot%20(4).png?raw=true" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Matrice responsiva(JS 3)</h5>
+              <p class="card-text">Una matrice responsiva che mostra i numeri da 1 a 1000 e evidenzia quelli primi</p>
+              <a href="https://niccolofinesso.github.io/TPSIT/array3.html" class="btn btn-primary" style="background-color: mediumseagreen">Vedi esercizio</a>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card" style="width: 18rem;margin-bottom: 20px;">
+            <img src="https://github.com/niccolofinesso/TPSIT/blob/main/Screenshot%20(5).png?raw=true" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Scheda personale</h5>
+              <p class="card-text">Una pagina con tutte le informazioni personali</p>
+              <a href="https://niccolofinesso.github.io/TPSIT/schedapersonale.html" class="btn btn-primary" style="background-color: mediumseagreen">Vedi esercizio</a>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card" style="width: 18rem;margin-bottom: 20px;">
+            <img src="https://github.com/niccolofinesso/TPSIT/blob/main/Screenshot%20(6).png?raw=true" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">JS 1</h5>
+              <p class="card-text">Una pagina con vari bottoni e un input</p>
+              <a href="https://niccolofinesso.github.io/TPSIT/js1.html" class="btn btn-primary" style="background-color: mediumseagreen">Vedi esercizio</a>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card" style="width: 18rem;margin-bottom: 20px;">
+            <img src="https://github.com/niccolofinesso/TPSIT/blob/main/Screenshot%20(7).png?raw=true" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Nascondi frasi</h5>
+              <p class="card-text">Una pagina che ha l'opzione di nascondere una frase</p>
+              <a href="https://niccolofinesso.github.io/TPSIT/js3.html" class="btn btn-primary" style="background-color: mediumseagreen">Vedi esercizio</a>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card" style="width: 18rem;margin-bottom: 20px;">
+            <img src="https://github.com/niccolofinesso/TPSIT/blob/main/Screenshot%20(8).png?raw=true" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Calcolatore lungheza tracciati(JS 5)</h5>
+              <p class="card-text">Un calcolatore che calcola il dislivello di un tracciato</p>
+              <a href="https://niccolofinesso.github.io/TPSIT/js5.html" class="btn btn-primary" style="background-color: mediumseagreen">Vedi esercizio</a>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card" style="width: 18rem;margin-bottom: 20px;">
+            <img src="https://github.com/niccolofinesso/TPSIT/blob/main/Screenshot%20(9).png?raw=true" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Morra Cinese</h5>
+              <p class="card-text">Una pagina che simula il gioco morra cinese con un risultato randomico da parte del computer</p>
+              <a href="https://niccolofinesso.github.io/TPSIT/morra.html" class="btn btn-primary" style="background-color: mediumseagreen">Vedi esercizio</a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="row">
-      <div class="col">
-        <div class="card" style="width: 18rem;margin-bottom: 20px;">
-          <img src="https://github.com/niccolofinesso/TPSIT/blob/main/Screenshot%20(3).png?raw=true" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">5 box</h5>
-            <p class="card-text">Una pagina responsive con 5 box di grandezza uguale e colore diverso in colonna</p>
-            <a href="https://niccolofinesso.github.io/TPSIT/5box1.html" class="btn btn-primary" style="background-color: mediumseagreen">Vedi esercizio</a>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card" style="width: 18rem;margin-bottom: 20px;">
-          <img src="https://github.com/niccolofinesso/TPSIT/blob/main/Screenshot%20(4).png?raw=true" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Matrice responsiva(JS 3)</h5>
-            <p class="card-text">Una matrice responsiva che mostra i numeri da 1 a 1000 e evidenzia quelli primi</p>
-            <a href="https://niccolofinesso.github.io/TPSIT/array3.html" class="btn btn-primary" style="background-color: mediumseagreen">Vedi esercizio</a>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card" style="width: 18rem;margin-bottom: 20px;">
-          <img src="https://github.com/niccolofinesso/TPSIT/blob/main/Screenshot%20(5).png?raw=true" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Scheda personale</h5>
-            <p class="card-text">Una pagina con tutte le informazioni personali</p>
-            <a href="https://niccolofinesso.github.io/TPSIT/schedapersonale.html" class="btn btn-primary" style="background-color: mediumseagreen">Vedi esercizio</a>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card" style="width: 18rem;margin-bottom: 20px;">
-          <img src="https://github.com/niccolofinesso/TPSIT/blob/main/Screenshot%20(6).png?raw=true" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">JS 1</h5>
-            <p class="card-text">Una pagina con vari bottoni e un input</p>
-            <a href="https://niccolofinesso.github.io/TPSIT/js1.html" class="btn btn-primary" style="background-color: mediumseagreen">Vedi esercizio</a>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card" style="width: 18rem;margin-bottom: 20px;">
-          <img src="https://github.com/niccolofinesso/TPSIT/blob/main/Screenshot%20(7).png?raw=true" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Nascondi frasi</h5>
-            <p class="card-text">Una pagina che ha l'opzione di nascondere una frase</p>
-            <a href="https://niccolofinesso.github.io/TPSIT/js3.html" class="btn btn-primary" style="background-color: mediumseagreen">Vedi esercizio</a>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card" style="width: 18rem;margin-bottom: 20px;">
-          <img src="https://github.com/niccolofinesso/TPSIT/blob/main/Screenshot%20(8).png?raw=true" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Calcolatore lungheza tracciati(JS 5)</h5>
-            <p class="card-text">Un calcolatore che calcola il dislivello di un tracciato</p>
-            <a href="https://niccolofinesso.github.io/TPSIT/js5.html" class="btn btn-primary" style="background-color: mediumseagreen">Vedi esercizio</a>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card" style="width: 18rem;margin-bottom: 20px;">
-          <img src="https://github.com/niccolofinesso/TPSIT/blob/main/Screenshot%20(9).png?raw=true" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Morra Cinese</h5>
-            <p class="card-text">Una pagina che simula il gioco morra cinese con un risultato randomico da parte del computer</p>
-            <a href="https://niccolofinesso.github.io/TPSIT/morra.html" class="btn btn-primary" style="background-color: mediumseagreen">Vedi esercizio</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-</body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  </body>
 </html>
