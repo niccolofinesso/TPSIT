@@ -10,7 +10,13 @@
         /* Stile per uniformare la dimensione delle card */
         .card {
             height: 100%;
+            transition: transform 0.3s ease-in-out; /* Transizione fluida per il cambiamento di dimensione */
         }
+
+        .card:hover {
+            transform: scale(1.05); /* Ingrandimento della card al 105% */
+        }
+
         .card-img-top {
             object-fit: cover;
             height: 200px;
@@ -18,7 +24,7 @@
     </style>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" href="#">Negozio di libri</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -31,14 +37,14 @@
     </ul>
     <form class="d-flex ms-auto" id="searchForm">
       <input class="form-control me-2" type="search" placeholder="Search for a book" aria-label="Search" id="searchInput">
-      <button class="btn btn-outline-success" type="submit">Search</button>
+      <button class="btn btn-outline-success" style="background-color: rgb(105, 135, 226);color: rgb(33, 33, 33);" type="submit">Search</button>
     </form>
   </div>
 </nav>
     
 <div class="container my-5 text-center" style="max-width: 580px;">
     <h1>Negozio di libri</h1>
-    <p class="lead">Pagina indice per i collegamenti ai vari progetti</p>
+    <p class="lead">Trova quello che cerchi con tutte le categorie</p>
 </div>
 
 <div class="container">
@@ -50,7 +56,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Gialli</h5>
                     <p class="card-text">Tutti i libri gialli.</p>
-                    <a href="#html" class="btn btn-primary">Vai agli esercizi!</a>
+                    <a href="#html" class="btn btn-primary">Vai al catalogo</a>
                 </div>
             </div>
         </div>
@@ -62,7 +68,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Narrativa</h5>
                     <p class="card-text">Tutti i libri di saggistica.</p>
-                    <a href="#javascript" class="btn btn-primary">Vai agli esercizi!</a>
+                    <a href="#javascript" class="btn btn-primary">Vai al catalogo</a>
                 </div>
             </div>
         </div>
@@ -74,7 +80,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Saggistica</h5>
                     <p class="card-text">Tutti i libri di narrativa.</p>
-                    <a href="#css" class="btn btn-primary">Vai agli esercizi!</a>
+                    <a href="#css" class="btn btn-primary">Vai al catalogo</a>
                 </div>
             </div>
         </div>
@@ -86,7 +92,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Horror</h5>
                     <p class="card-text">Tutti i libri horror.</p>
-                    <a href="#bootstrap" class="btn btn-primary">Vai agli esercizi!</a>
+                    <a href="#bootstrap" class="btn btn-primary">Vai al catalogo</a>
                 </div>
             </div>
         </div>
