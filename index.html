@@ -1,94 +1,111 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="it">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-.topnav {
-  overflow: hidden;
-  background-color: #31772a;
-}
-
-.topnav a {
-  float: left;
-  display: block;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-}
-
-.topnav a:hover {
-  background-color: #ddd;
-  color: black;
-}
-
-.topnav a.active {
-  background-color: #092420;
-  color: white;
-}
-
-.topnav .icon {
-  display: none;
-}
-
-@media screen and (max-width: 600px) {
-  .topnav a:not(:first-child) {display: none;}
-  .topnav a.icon {
-    float: right;
-    display: block;
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .topnav.responsive {position: relative;}
-  .topnav.responsive .icon {
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
-  .topnav.responsive a {
-    float: none;
-    display: block;
-    text-align: left;
-  }
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gioco di Memoria Sequenziale</title>
+    <!-- CSS di Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .grid {
+            display: grid;
+            gap: 10px;
+            justify-content: center;
+        }
+        .btn-grid {
+            height: 100px;
+            width: 100px;
+            font-size: 1.5rem;
+        }
+        .btn-warning {
+            background-color: yellow !important;
+            color: black !important;
+        }
+    </style>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
+    <div class="container text-center mt-5">
+        <h1>Gioco di Memoria Sequenziale</h1>
+        <button id="startButton" class="btn btn-primary my-4">Start</button>
+        <div id="message" class="alert alert-info" role="alert"></div>
+        <div id="gridContainer" class="grid" style="grid-template-columns: repeat(3, 1fr);"></div>
+        <p>Punteggio: <span id="score">0</span></p>
+    </div>
 
-<div class="topnav" id="myTopnav">
-  <a href="#home" class="active">Home</a>
-  <a href="https://www.repubblica.it/">News</a>
-  <a href="https://github.com/niccolofinesso/TPSIT">Esercizi Html/css</a>
-  <a href="https://niccolofinesso.github.io/TPSIT/schedapersonale.html">About me</a>
-  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-    <i class="fa fa-bars"></i>
-  </a>
-</div>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const gridContainer = document.getElementById('gridContainer');
+        const message = document.getElementById('message');
+        const scoreElement = document.getElementById('score');
+        const startButton = document.getElementById('startButton');
+        let sequence = [];
+        let userSequence = [];
+        let score = 0;
+        let buttons;
 
-<div style="padding-left:16px">
-  <h2>Responsive Topnav Example</h2>
-  <p>Resize the browser window to see how it works.</p>
-</div>
+        function createGrid(size) {
+            gridContainer.innerHTML = '';
+            for (let i = 0; i < size * size; i++) {
+                const button = document.createElement('button');
+                button.classList.add('btn', 'btn-secondary', 'btn-grid');
+                button.id = `btn${i}`;
+                button.addEventListener('click', () => handleUserInput(i));
+                gridContainer.appendChild(button);
+            }
+            buttons = document.querySelectorAll('.btn-grid');
+        }
 
-<script>
-function myFunction() {
-  var x = document.getElementById("myTopnav");
-  if (x.className === "topnav") {
-    x.className += " responsive";
-  } else {
-    x.className = "topnav";
-  }
-}
-</script>
+        function startGame() {
+            sequence = [];
+            userSequence = [];
+            score = 0;
+            scoreElement.textContent = score;
+            message.textContent = '';
+            createGrid(3);
+            nextRound();
+        }
 
+        function nextRound() {
+            userSequence = [];
+            const nextButton = Math.floor(Math.random() * buttons.length);
+            sequence.push(nextButton);
+            animateSequence();
+            message.textContent = `Riproduci la sequenza di ${sequence.length} pulsanti.`;
+        }
+
+        function animateSequence() {
+            let i = 0;
+            const interval = setInterval(() => {
+                buttons[sequence[i]].classList.add('btn-warning');
+                setTimeout(() => {
+                    buttons[sequence[i]].classList.remove('btn-warning');
+                }, 500);
+                i++;
+                if (i >= sequence.length) {
+                    clearInterval(interval);
+                }
+            }, 1000);
+        }
+
+        function handleUserInput(buttonIndex) {
+            userSequence.push(buttonIndex);
+            if (userSequence[userSequence.length - 1] !== sequence[userSequence.length - 1]) {
+                message.textContent = 'Hai sbagliato! Riprova.';
+                sequence = [];
+                userSequence = [];
+            } else if (userSequence.length === sequence.length) {
+                score++;
+                scoreElement.textContent = score;
+                nextRound();
+            }
+        }
+
+        startButton.addEventListener('click', startGame);
+    </script>
 </body>
 </html>
+
+
+git clone https://github.com/tuo-username/tuo-repository.git
+cd tuo-repository
