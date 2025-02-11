@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gioco di Memoria Sequenziale</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .button {
+      width: 100px;
+      height: 100px;
+      margin: 10px;
+      font-size: 1.5em;
+      transition: background-color 0.3s, box-shadow 0.3s;
+      background-color: #007bff; /* Aggiunto un blu vivace */
+      border: 2px solid #0056b3; /* Bordo blu scuro per maggiore visibilità */
+      color: white; /* Colore del testo bianco */
+    }
+    .button:hover {
+      background-color: #0056b3; /* Colore più scuro al passaggio del mouse */
+    }
+    .active {
+      background-color: #ffcc00; /* Colore attivo giallo per la sequenza */
+      box-shadow: 0 0 20px rgba(255, 204, 0, 0.6); /* Ombra più prominente */
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    #startBtn:disabled {
+      background-color: #6c757d;
+    }
+    /* Centrare il contenuto della pagina */
+    body, html {
+      height: 100%;
+    }
+    .container {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+  </style>
+</head>
+<body>
+  <div class="container text-center">
+    <h1>Gioco di Memoria Sequenziale</h1>
+    <div class="mt-4" id="punteggio">Punteggio: 0</div>
+    <div class="grid mt-4" id="gameGrid">
+      <!-- Pulsanti generati da JS -->
+    </div>
+    <div class="mt-4">
+      <button class="btn btn-primary" id="startBtn">Start</button>
+    </div>
+    <div id="status" class="mt-3"></div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const startBtn = document.getElementById("startBtn");
+      const gameGrid = document.getElementById("gameGrid");
+      const punteggioElem = document.getElementById("punteggio");
+      const statusElem = document.getElementById("status");
+
+      const numRows = 3;  // Numero di righe nella griglia
+      const numCols = 3;  // Numero di colonne nella griglia
+      let sequence = [];  // Sequenza generata casualmente
+      let userSequence = [];  // Sequenza inserita dall'utente
+      let score = 0;  // Punteggio del gioco
+
+      // Funzione per generare la griglia di pulsanti
+      function createGrid() {
+        gameGrid.innerHTML = "";
+        for (let i = 0; i < numRows * numCols; i++) {
+          const button = document.createElement("button");
+          button.classList.add("btn", "button");
+          button.setAttribute("data-id", i);
+          button.addEventListener("click", handleUserInput);
+          gameGrid.appendChild(button);
+        }
+      }
+
+      // Funzione per avviare il gioco
+      function startGame() {
+        score = 0;
+        sequence = [];
+        userSequence = [];
+        updatePunteggio();
+        startBtn.disabled = true;
+        statusElem.textContent = "Segui la sequenza!";
+        addToSequence();
+      }
+
+      // Funzione per aggiornare il punteggio
+      function updatePunteggio() {
+        punteggioElem.textContent = "Punteggio: " + score;
+      }
+
+      // Funzione per aggiungere un nuovo pulsante alla sequenza
+      function addToSequence() {
+        const randomButtonIndex = Math.floor(Math.random() * (numRows * numCols));
+        sequence.push(randomButtonIndex);
+        showSequence();
+      }
+
+      // Funzione per mostrare la sequenza di pulsanti
+      function showSequence() {
+        let delay = 0;
+        sequence.forEach((buttonIndex, idx) => {
+          setTimeout(() => {
+            const button = document.querySelector(`[data-id="${buttonIndex}"]`);
+            button.classList.add("active");
+            setTimeout(() => {
+              button.classList.remove("active");
+            }, 500);
+          }, delay);
+          delay += 1000; // Ritardo tra i pulsanti
+        });
+        userSequence = [];
+        setTimeout(() => {
+          statusElem.textContent = "Ora tocca i pulsanti nella stessa sequenza!";
+        }, delay);
+      }
+
+      // Funzione per gestire l'input dell'utente
+      function handleUserInput(event) {
+        const buttonIndex = parseInt(event.target.getAttribute("data-id"));
+        userSequence.push(buttonIndex);
+        const button = event.target;
+        button.classList.add("active");
+        setTimeout(() => {
+          button.classList.remove("active");
+        }, 500);
+
+        checkUserSequence();
+      }
+
+      // Funzione per verificare se la sequenza dell'utente è corretta
+      function checkUserSequence() {
+        const lastIndex = userSequence.length - 1;
+        if (userSequence[lastIndex] !== sequence[lastIndex]) {
+          statusElem.textContent = "Hai sbagliato! Il gioco è finito.";
+          startBtn.disabled = false;
+          return;
+        }
+
+        if (userSequence.length === sequence.length) {
+          score++;
+          updatePunteggio();
+          setTimeout(() => {
+            statusElem.textContent = "Bravo! La sequenza è corretta!";
+            addToSequence();
+          }, 1000);
+        }
+      }
+
+      // Event listener per il pulsante "Start"
+      startBtn.addEventListener("click", startGame);
+
+      // Creare la griglia iniziale
+      createGrid();
+    });
+  </script>
+</body>
+</html>
