@@ -42,11 +42,24 @@
       align-items: center;
       flex-direction: column;
     }
+    .difficulty-select {
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
   <div class="container text-center">
     <h1>Gioco di Memoria Sequenziale</h1>
+    <!-- Selettore di difficoltà -->
+    <div class="difficulty-select">
+      <label for="difficulty" class="form-label">Scegli la difficoltà:</label>
+      <select class="form-select" id="difficulty">
+        <option value="easy">Facile</option>
+        <option value="normal" selected>Normale</option>
+        <option value="hard">Difficile</option>
+      </select>
+    </div>
+
     <div class="mt-4" id="punteggio">Punteggio: 0</div>
     <div class="grid mt-4" id="gameGrid">
       <!-- Pulsanti generati da JS -->
@@ -63,12 +76,9 @@
       const gameGrid = document.getElementById("gameGrid");
       const punteggioElem = document.getElementById("punteggio");
       const statusElem = document.getElementById("status");
+      const difficultySelect = document.getElementById("difficulty");
 
-      const numRows = 3;  // Numero di righe nella griglia
-      const numCols = 3;  // Numero di colonne nella griglia
-      let sequence = [];  // Sequenza generata casualmente
-      let userSequence = [];  // Sequenza inserita dall'utente
-      let score = 0;  // Punteggio del gioco
+      let numRows, numCols, sequence, userSequence, score, sequenceSpeed;
 
       // Funzione per generare la griglia di pulsanti
       function createGrid() {
@@ -116,7 +126,7 @@
               button.classList.remove("active");
             }, 500);
           }, delay);
-          delay += 1000; // Ritardo tra i pulsanti
+          delay += sequenceSpeed; // Ritardo tra i pulsanti in base alla velocità
         });
         userSequence = [];
         setTimeout(() => {
@@ -156,11 +166,33 @@
         }
       }
 
+      // Funzione per aggiornare la difficoltà
+      function updateDifficulty() {
+        const difficulty = difficultySelect.value;
+        if (difficulty === "easy") {
+          numRows = 3;
+          numCols = 3;
+          sequenceSpeed = 1500;  // Tempo più lungo per la sequenza
+        } else if (difficulty === "normal") {
+          numRows = 3;
+          numCols = 3;
+          sequenceSpeed = 1000;  // Tempo normale per la sequenza
+        } else if (difficulty === "hard") {
+          numRows = 4;
+          numCols = 3;
+          sequenceSpeed = 800;   // Tempo più veloce per la sequenza
+        }
+        createGrid();
+      }
+
       // Event listener per il pulsante "Start"
       startBtn.addEventListener("click", startGame);
 
-      // Creare la griglia iniziale
-      createGrid();
+      // Cambiare la difficoltà quando l'utente seleziona una nuova difficoltà
+      difficultySelect.addEventListener("change", updateDifficulty);
+
+      // Impostare la difficoltà iniziale
+      updateDifficulty();
     });
   </script>
 </body>
