@@ -45,6 +45,15 @@
     .difficulty-select {
       margin-top: 20px;
     }
+
+    /* Stile per il messaggio Bravo! */
+    #congratulationsMessage {
+      font-size: 2em;
+      font-weight: bold;
+      color: green;
+      display: none;
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
@@ -67,6 +76,8 @@
     <div class="mt-4">
       <button class="btn btn-primary" id="startBtn">Start</button>
     </div>
+    <!-- Messaggio di congratulazioni -->
+    <div id="congratulationsMessage">Bravo!</div>
     <div id="status" class="mt-3"></div>
   </div>
 
@@ -77,6 +88,7 @@
       const punteggioElem = document.getElementById("punteggio");
       const statusElem = document.getElementById("status");
       const difficultySelect = document.getElementById("difficulty");
+      const congratulationsMessage = document.getElementById("congratulationsMessage");
 
       let numRows, numCols, sequence, userSequence, score, sequenceSpeed;
 
@@ -159,6 +171,13 @@
         if (userSequence.length === sequence.length) {
           score++;
           updatePunteggio();
+          if (score === 8) {
+            // Mostra il messaggio di congratulazioni
+            congratulationsMessage.style.display = "block";
+            setTimeout(() => {
+              congratulationsMessage.style.display = "none";
+            }, 3000); // Nascondi il messaggio dopo 3 secondi
+          }
           setTimeout(() => {
             statusElem.textContent = "Bravo! La sequenza è corretta!";
             addToSequence();
