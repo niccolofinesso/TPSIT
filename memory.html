@@ -11,7 +11,7 @@
       height: 100px;
       margin: 10px;
       font-size: 1.5em;
-      transition: background-color 0.3s, box-shadow 0.3s;
+      transition: background-color 0.3s, box-shadow 0.3s, transform 0.2s ease;
       background-color: #007bff; /* Aggiunto un blu vivace */
       border: 2px solid #0056b3; /* Bordo blu scuro per maggiore visibilità */
       color: white; /* Colore del testo bianco */
@@ -22,6 +22,11 @@
     .active {
       background-color: #ffcc00; /* Colore attivo giallo per la sequenza */
       box-shadow: 0 0 20px rgba(255, 204, 0, 0.6); /* Ombra più prominente */
+      transform: scale(1.1); /* Ingrandisce il pulsante quando è attivo */
+    }
+    .wrong {
+      background-color: red !important;
+      box-shadow: 0 0 10px rgba(255, 0, 0, 0.8);
     }
     .grid {
       display: grid;
@@ -75,15 +80,17 @@
     </div>
     <div class="mt-4">
       <button class="btn btn-primary" id="startBtn">Start</button>
+      <button class="btn btn-secondary" id="resetBtn">Reset</button>
     </div>
     <!-- Messaggio di congratulazioni -->
     <div id="congratulationsMessage">Bravo!</div>
-    <div id="status" class="mt-3"></div>
+    <div id="status" class="mt-3" aria-live="polite"></div>
   </div>
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const startBtn = document.getElementById("startBtn");
+      const resetBtn = document.getElementById("resetBtn");
       const gameGrid = document.getElementById("gameGrid");
       const punteggioElem = document.getElementById("punteggio");
       const statusElem = document.getElementById("status");
@@ -99,6 +106,7 @@
           const button = document.createElement("button");
           button.classList.add("btn", "button");
           button.setAttribute("data-id", i);
+          button.setAttribute("aria-label", `Pulsante ${i + 1}`);
           button.addEventListener("click", handleUserInput);
           gameGrid.appendChild(button);
         }
@@ -117,7 +125,7 @@
 
       // Funzione per aggiornare il punteggio
       function updatePunteggio() {
-        punteggioElem.textContent = "Punteggio: " + score;
+        punteggioElem.textContent = `Punteggio: ${score}`;
       }
 
       // Funzione per aggiungere un nuovo pulsante alla sequenza
@@ -164,6 +172,11 @@
         const lastIndex = userSequence.length - 1;
         if (userSequence[lastIndex] !== sequence[lastIndex]) {
           statusElem.textContent = "Hai sbagliato! Il gioco è finito.";
+          const wrongButton = document.querySelector(`[data-id="${userSequence[lastIndex]}"]`);
+          wrongButton.classList.add("wrong");
+          setTimeout(() => {
+            wrongButton.classList.remove("wrong");
+          }, 1000);
           startBtn.disabled = false;
           return;
         }
@@ -204,8 +217,22 @@
         createGrid();
       }
 
+      // Funzione per resettare il gioco
+      function resetGame() {
+        score = 0;
+        userSequence = [];
+        sequence = [];
+        updatePunteggio();
+        statusElem.textContent = "";
+        createGrid();
+        startBtn.disabled = false;
+      }
+
       // Event listener per il pulsante "Start"
       startBtn.addEventListener("click", startGame);
+
+      // Event listener per il pulsante "Reset"
+      resetBtn.addEventListener("click", resetGame);
 
       // Cambiare la difficoltà quando l'utente seleziona una nuova difficoltà
       difficultySelect.addEventListener("change", updateDifficulty);
