@@ -10,9 +10,9 @@
             var stringaA = document.getElementById("inputA").value;
             var stringaB = document.getElementById("inputB").value;
 
-            // Mostra la lunghezza delle stringhe
-            document.getElementById("lunghezzaA").innerText = "Lunghezza della stringa A: " + stringaA.length;
-            document.getElementById("lunghezzaB").innerText = "Lunghezza della stringa B: " + stringaB.length;
+            // Mostra la lunghezza delle stringhe con il testo in grassetto prima dei due punti
+            document.getElementById("lunghezzaA").innerHTML = "<strong>Lunghezza della stringa A:</strong> " + stringaA.length;
+            document.getElementById("lunghezzaB").innerHTML = "<strong>Lunghezza della stringa B:</strong> " + stringaB.length;
         }
 
         // Funzione 2: Restituire la stringa al contrario
@@ -20,13 +20,12 @@
             var stringaA = document.getElementById("inputA").value;
             var stringaB = document.getElementById("inputB").value;
 
-            // Inverte le stringhe
+            // Inverte le stringhe e mostra con il testo in grassetto prima dei due punti
             var invertedA = stringaA.split('').reverse().join('');
             var invertedB = stringaB.split('').reverse().join('');
 
-            // Mostra le stringhe al contrario
-            document.getElementById("invertitaA").innerText = "Stringa A al contrario: " + invertedA;
-            document.getElementById("invertitaB").innerText = "Stringa B al contrario: " + invertedB;
+            document.getElementById("invertitaA").innerHTML = "<strong>Stringa A al contrario:</strong> " + invertedA;
+            document.getElementById("invertitaB").innerHTML = "<strong>Stringa B al contrario:</strong> " + invertedB;
         }
 
         // Funzione 3: Unire le due stringhe
@@ -34,11 +33,10 @@
             var stringaA = document.getElementById("inputA").value;
             var stringaB = document.getElementById("inputB").value;
 
-            // Unisce le due stringhe
+            // Unisce le due stringhe e mostra con il testo in grassetto prima dei due punti
             var unione = stringaA + " " + stringaB;
 
-            // Mostra la stringa unita
-            document.getElementById("unione").innerText = "Stringhe unite: " + unione;
+            document.getElementById("unione").innerHTML = "<strong>Stringhe unite:</strong> " + unione;
         }
 
         // Funzione 4: Calcolare la somma delle lunghezze delle due stringhe
@@ -46,16 +44,24 @@
             var stringaA = document.getElementById("inputA").value;
             var stringaB = document.getElementById("inputB").value;
 
-            // Somma delle lunghezze
+            // Somma delle lunghezze e mostra con il testo in grassetto prima dei due punti
             var somma = stringaA.length + stringaB.length;
-            document.getElementById("sommaLunghezze").innerText = "Somma delle lunghezze: " + somma;
+            document.getElementById("sommaLunghezze").innerHTML = "<strong>Somma delle lunghezze:</strong> " + somma;
 
             // Controlla se la stringa B è troppo lunga
             if (stringaB.length > 20) {
-                document.getElementById("erroreB").innerText = "Errore: la stringa B è troppo lunga!";
+                document.getElementById("erroreB").innerHTML = "<strong>Errore:</strong> la stringa B è troppo lunga!";
             } else {
-                document.getElementById("erroreB").innerText = "";
+                document.getElementById("erroreB").innerHTML = "";
             }
+        }
+
+        // Funzione che esegue tutte le operazioni
+        function eseguiOperazioni() {
+            calcolaLunghezza();
+            invertiStringa();
+            unisciStringhe();
+            sommaLunghezze();
         }
     </script>
 </head>
@@ -68,10 +74,8 @@
         <label for="inputB">Stringa B:</label>
         <input type="text" id="inputB" name="inputB">
         <br><br>
-        <button type="button" onclick="calcolaLunghezza()">Calcola Lunghezza</button>
-        <button type="button" onclick="invertiStringa()">Inverti Stringhe</button>
-        <button type="button" onclick="unisciStringhe()">Unisci Stringhe</button>
-        <button type="button" onclick="sommaLunghezze()">Somma Lunghezze</button>
+        <!-- Pulsante per eseguire tutte le operazioni -->
+        <button type="button" onclick="eseguiOperazioni()">Esegui Operazioni</button>
     </form>
 
     <div id="lunghezzaA"></div>
@@ -83,4 +87,3 @@
     <div id="erroreB" style="color: red;"></div>
 </body>
 </html>
-
