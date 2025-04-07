@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Div Sovrapposti</title>
+  <title>Div Sovrapposti Rimbalzanti</title>
   <!-- Aggiungi Bootstrap -->
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
@@ -19,7 +19,7 @@
       width: 120px;
       height: 120px;
       border-radius: 10px;
-      transition: all 0.3s ease-in-out;
+      transition: all 0.1s ease-in-out;
     }
     #blue-box {
       background-color: #007bff;
@@ -43,44 +43,55 @@
     const blueBox = document.getElementById('blue-box');
     const yellowBox = document.getElementById('yellow-box');
 
-    function randomPosition() {
-      const maxWidth = window.innerWidth - 120;
-      const maxHeight = window.innerHeight - 120;
-      return {
-        x: Math.floor(Math.random() * maxWidth),
-        y: Math.floor(Math.random() * maxHeight)
-      };
-    }
+    let blueDirection = { x: 2, y: 2 }; // Velocità di movimento (più bassa per un movimento fluido)
+    let yellowDirection = { x: -2, y: -2 };
+
+    // Posizione iniziale dei div
+    blueBox.style.left = `${Math.random() * (window.innerWidth - 120)}px`;
+    blueBox.style.top = `${Math.random() * (window.innerHeight - 120)}px`;
+    
+    yellowBox.style.left = `${Math.random() * (window.innerWidth - 120)}px`;
+    yellowBox.style.top = `${Math.random() * (window.innerHeight - 120)}px`;
 
     function updatePosition() {
-      const bluePos = randomPosition();
-      const yellowPos = randomPosition();
+      const maxWidth = window.innerWidth - 120;
+      const maxHeight = window.innerHeight - 120;
 
-      blueBox.style.left = `${bluePos.x}px`;
-      blueBox.style.top = `${bluePos.y}px`;
+      // Calcola nuove posizioni
+      let bluePos = blueBox.getBoundingClientRect();
+      let yellowPos = yellowBox.getBoundingClientRect();
 
-      yellowBox.style.left = `${yellowPos.x}px`;
-      yellowBox.style.top = `${yellowPos.y}px`;
+      // Movimento blu
+      if (bluePos.left <= 0 || bluePos.right >= maxWidth) blueDirection.x = -blueDirection.x;
+      if (bluePos.top <= 0 || bluePos.bottom >= maxHeight) blueDirection.y = -blueDirection.y;
+      
+      blueBox.style.left = `${bluePos.left + blueDirection.x}px`;
+      blueBox.style.top = `${bluePos.top + blueDirection.y}px`;
 
-      // Verifica sovrapposizione
-      const blueRect = blueBox.getBoundingClientRect();
-      const yellowRect = yellowBox.getBoundingClientRect();
+      // Movimento giallo
+      if (yellowPos.left <= 0 || yellowPos.right >= maxWidth) yellowDirection.x = -yellowDirection.x;
+      if (yellowPos.top <= 0 || yellowPos.bottom >= maxHeight) yellowDirection.y = -yellowDirection.y;
+      
+      yellowBox.style.left = `${yellowPos.left + yellowDirection.x}px`;
+      yellowBox.style.top = `${yellowPos.top + yellowDirection.y}px`;
 
+      // Controlla la sovrapposizione
       if (
-        blueRect.left < yellowRect.right &&
-        blueRect.right > yellowRect.left &&
-        blueRect.top < yellowRect.bottom &&
-        blueRect.bottom > yellowRect.top
+        bluePos.left < yellowPos.right &&
+        bluePos.right > yellowPos.left &&
+        bluePos.top < yellowPos.bottom &&
+        bluePos.bottom > yellowPos.top
       ) {
         blueBox.style.backgroundColor = '#dc3545'; // rosso
         yellowBox.style.backgroundColor = '#dc3545'; // rosso
-      } else {
-        blueBox.style.backgroundColor = '#007bff'; // blu
-        yellowBox.style.backgroundColor = '#ffc107'; // giallo
+        setTimeout(() => {
+          blueBox.style.backgroundColor = '#007bff'; // blu
+          yellowBox.style.backgroundColor = '#ffc107'; // giallo
+        }, 200); // Cambia colore per 200ms
       }
     }
 
-    setInterval(updatePosition, 500);
+    setInterval(updatePosition, 10); // 10ms per un movimento fluido
   </script>
 </body>
 </html>
