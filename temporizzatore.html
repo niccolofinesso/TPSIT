@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Div Sovrapposti</title>
+  <!-- Aggiungi Bootstrap -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      height: 100vh;
+      background-color: #f0f0f0;
+    }
+    .box {
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      border-radius: 10px;
+      transition: all 0.3s ease-in-out;
+    }
+    #blue-box {
+      background-color: #007bff;
+    }
+    #yellow-box {
+      background-color: #ffc107;
+    }
+  </style>
+</head>
+<body>
+  <!-- Div Sovrapposti -->
+  <div id="blue-box" class="box"></div>
+  <div id="yellow-box" class="box"></div>
+
+  <!-- Aggiungi script Bootstrap -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.1/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <script>
+    const blueBox = document.getElementById('blue-box');
+    const yellowBox = document.getElementById('yellow-box');
+
+    function randomPosition() {
+      const maxWidth = window.innerWidth - 120;
+      const maxHeight = window.innerHeight - 120;
+      return {
+        x: Math.floor(Math.random() * maxWidth),
+        y: Math.floor(Math.random() * maxHeight)
+      };
+    }
+
+    function updatePosition() {
+      const bluePos = randomPosition();
+      const yellowPos = randomPosition();
+
+      blueBox.style.left = `${bluePos.x}px`;
+      blueBox.style.top = `${bluePos.y}px`;
+
+      yellowBox.style.left = `${yellowPos.x}px`;
+      yellowBox.style.top = `${yellowPos.y}px`;
+
+      // Verifica sovrapposizione
+      const blueRect = blueBox.getBoundingClientRect();
+      const yellowRect = yellowBox.getBoundingClientRect();
+
+      if (
+        blueRect.left < yellowRect.right &&
+        blueRect.right > yellowRect.left &&
+        blueRect.top < yellowRect.bottom &&
+        blueRect.bottom > yellowRect.top
+      ) {
+        blueBox.style.backgroundColor = '#dc3545'; // rosso
+        yellowBox.style.backgroundColor = '#dc3545'; // rosso
+      } else {
+        blueBox.style.backgroundColor = '#007bff'; // blu
+        yellowBox.style.backgroundColor = '#ffc107'; // giallo
+      }
+    }
+
+    setInterval(updatePosition, 500);
+  </script>
+</body>
+</html>
